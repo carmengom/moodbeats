@@ -1,8 +1,6 @@
 import { categoriasPorClima } from './scriptSpotify.js';
 import { fondosPorClima } from './scriptFondos.js';
 
-const BASE_URL = "https://moodbeatsplayer.vercel.app";
-
 const contenedorMensaje = document.querySelector('#mensaje');
 
 const contenedorClima = document.querySelector('#clima');
@@ -113,7 +111,7 @@ async function buscarClima() {
       return;
     }
 
-const respuesta = await fetch(`${BASE_URL}/api/clima?ciudad=${encodeURIComponent(ciudad)}`);
+const respuesta = await fetch(`/api/clima?ciudad=${encodeURIComponent(ciudad)}`);
     const data = await respuesta.json();
 
     mostrarClima(data);

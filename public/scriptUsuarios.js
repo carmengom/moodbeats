@@ -1,9 +1,6 @@
 import { mostrarClima } from './script.js';
 import { mostrarMensaje } from './script.js';
 
-const BASE_URL = "https://moodbeatsplayer.vercel.app"; 
-
-
 let data = null;
 
 /* =========================
@@ -211,7 +208,7 @@ function mostrarAtajos() {
 ========================= */
 async function buscarClimaAtajo(ciudad) {
   try {
-    const respuesta = await fetch(`${BASE_URL}/api/clima?ciudad=${encodeURIComponent(ciudad)}`);
+    const respuesta = await fetch(`/api/clima?ciudad=${encodeURIComponent(ciudad)}`);
     const data = await respuesta.json();
     return data;
   } catch (error) {

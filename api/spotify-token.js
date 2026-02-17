@@ -1,5 +1,3 @@
-import fetch from 'node-fetch';
-
 export default async function handler(req, res) {
   try {
     const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
