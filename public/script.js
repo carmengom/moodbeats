@@ -60,9 +60,9 @@ async function obtenerUbicacion() {
 
 /* OBTENER */
 async function obtenerClima(lat, lon) {
-const respuesta = await fetch(`/api/clima?lat=${lat}&lon=${lon}`);
-const data = await respuesta.json();
-  return await respuesta.json();
+  const respuesta = await fetch(`/api/clima?lat=${lat}&lon=${lon}`);
+  const data = await respuesta.json();
+  return data;
 }
 
 
