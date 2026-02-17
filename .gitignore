@@ -1,0 +1,27 @@
+# Node modules
+server/node_modules/
+
+# Env files
+server/.env
+
+# Logs
+server/logs/
+*.log
+npm-debug.log*
+
+# OS y editores
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Build / outputs
+server/dist/
+server/build/
+
+# Dependency directories
+server/.pnp/
+server/.pnp.js
+
+# Optional npm cache
+.npm/

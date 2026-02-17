@@ -1,0 +1,388 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap'); /*INTER*/
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap'); /*LEAGUE SPARTAN*/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+}
+
+body{
+    background-image: url(img/clear.webp);
+    background-size: cover;
+    color: white;
+}
+
+header{
+    padding: 3em 0em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#logo{
+    color: white;
+    font-family: "League Spartan", sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+}
+
+.contenedor{
+    margin: auto;
+    width: 90%;
+}
+
+.inputModal{
+    color: white;
+    width: 342px;
+    height: 42.75px;
+    padding: 10.179px 14.25px;
+    align-items: center;
+    gap: 10.179px;
+
+    border-radius: 11.196px;
+    border: 0.509px solid rgba(255, 255, 255, 0.40);
+    background: rgba(0, 0, 0, 0.31);
+    backdrop-filter: blur(10.076786041259766px);
+}
+
+.labelModal{
+    color: rgba(255, 255, 255, 0.70);
+    font-size: 14.213px;
+    font-weight: 500;
+}
+
+#formEditar, #formBorrar, #nombreUsuario{
+    display: none;
+}
+
+#login, #formEditar, #formBorrar{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.72);
+  z-index: 1;
+}
+
+#modalUsuario, .popup{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width: 472px;
+    height: 467.4286px;
+
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.40);
+    background: rgba(0, 0, 0, 0.31);
+    backdrop-filter: blur(9.899999618530273px);
+
+    display: flex;
+    padding: 66px 105px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 39px;
+    align-self: stretch;
+}
+
+.botones{
+    display: flex;
+    gap: 1em;
+}
+
+.botonRojo {
+    color: #ffffff;
+    font-size: 16.286px;
+    width: 100%;
+
+    padding: 10.179px 14.25px;
+    border-radius: 11.196px;
+    border: 0.509px solid rgba(255, 255, 255, 0.40);
+    background: #b80000;
+    backdrop-filter: blur(10.076786041259766px);
+}
+
+
+.botonGris {
+    color: #ffffff;
+    font-size: 16.286px;
+    width: 100%;
+
+    padding: 10.179px 14.25px;
+    border-radius: 11.196px;
+    border: 0.509px solid rgba(255, 255, 255, 0.40);
+    background: #979797;
+    backdrop-filter: blur(10.076786041259766px);
+}
+
+.botonAzul {
+    color: #ffffff;
+    font-size: 16.286px;
+    width: 100%;
+
+    padding: 10.179px 14.25px;
+    border-radius: 11.196px;
+    border: 0.509px solid rgba(255, 255, 255, 0.40);
+    background: #1653AD;
+    backdrop-filter: blur(10.076786041259766px);
+}
+
+.botonCeleste{
+    color: #ffffff;
+    font-size: 16.286px;
+    width: 100%;
+
+    padding: 10.179px 14.25px;
+    border-radius: 11.196px;
+    border: 0.509px solid rgba(255, 255, 255, 0.40);
+    background: #95c0ff;
+    backdrop-filter: blur(10.076786041259766px);
+}
+
+#buscar{
+    display: flex;
+    width: 250px;
+    height: 51.935px;
+    padding: 0em 2em;
+    justify-content: space-between;
+    align-items: center;
+
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.40);
+    background: rgba(255, 255, 255, 0.11);
+    backdrop-filter: blur(13);
+    transition: 0.3s;
+}
+
+#buscar:hover{
+    transform: scale(1.1);
+}
+
+#buscar input{
+    all: unset;
+    width: 150px;
+    color: white;
+}
+
+#buscar input::placeholder {
+  color: #ffffff9d;
+}
+
+button#btnBuscar {
+  all: unset; 
+  cursor: pointer; 
+}
+
+#usuario{
+    position: relative;
+    padding: 1em;
+    gap: 1em;
+
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.40);
+    background: rgba(255, 255, 255, 0.11);
+    backdrop-filter: blur(13);
+    transition: 0.3s;
+}
+
+#usuario:hover{
+    transform: scale(1.1);
+}
+
+#atajos {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  margin-bottom: 2em;
+}
+
+.atajoPill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5em 1em;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.40);
+    background: rgba(255, 255, 255, 0.11);
+    backdrop-filter: blur(13);
+    margin-left: 0.5em;
+}
+
+.atajoPill p {
+  cursor: pointer;
+}
+
+.atajoPill button {
+  margin-left: 0.3em;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  margin-top: 0.3em;
+}
+
+#btnAgregarAtajo {
+  background-color: #3b82f6;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#climaYPlaylist{
+    display: flex;
+    justify-content: space-between;
+}
+
+#clima{
+    color: white;
+}
+
+#clima h1{
+    font-size: 48px;
+    line-height: 50px;
+}
+
+#imgTemp{
+    display: inline-flex;
+    align-items: center;
+}
+
+#clima img{
+    display: inline-block;
+}
+
+#clima p{
+    color: #FFFFFF;
+    font-size: 112px;
+    font-weight: 300;
+    letter-spacing: -9.035px;
+}
+
+#clima h2{
+    color: rgba(255, 255, 255, 0.60);
+    font-size: 50px;
+    letter-spacing: -2.5px;
+}
+
+#playlist{
+    width: 50%;
+    height: 700px;
+
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.40);
+    background: rgba(0, 0, 0, 0.31);
+    backdrop-filter: blur(10px);
+    padding: 3em;
+}
+
+#playlist h2{
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 31px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.93px;
+}
+
+    #imgTemp img {
+      vertical-align: middle;
+    }
+    #spotify-container {
+      margin-top: 2em;
+      display: inline-block;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    #spotify-player{
+        width: 100%;
+        height: 523px;
+    }
+
+#title-and-button{
+    display: flex;
+    justify-content: space-between;
+}
+
+.btnAzulIcono{
+    padding: 1em;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.40);
+    background: #1653AD;
+    backdrop-filter: blur(13);
+    transition: 0.3s;
+}
+
+.btnAzulIcono:hover{
+    transform: scale(1.1);
+}
+
+
+button#btnOtraPlaylist {
+  all: unset; 
+  cursor: pointer; 
+}
+
+#opcionesUsuario{
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 10;
+    width: 200px;
+    padding: 0.5em 2em;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.40);
+    background: rgba(255, 255, 255, 0.11);
+    backdrop-filter: blur(13);
+    transition: 0.3s;
+}
+
+#editarPerfil, #borrarUsuario, #logout{
+    all: unset; 
+}
+
+#mensaje {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  z-index: 10;
+  display: none;
+}
+.mensaje-error {
+  background-color: #f44336;
+}
+.mensaje-exito {
+  background-color: #4caf50;
+}
+
+
+    @media (max-width: 768px) {
+        #climaYPlaylist{
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #playlist{
+            width: 100%;
+        }
+
+ 
+}

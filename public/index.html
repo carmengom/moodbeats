@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Clima y Playlist Spotify</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+    <header class="contenedor">
+        <a href="index.html" id="logo">moodbeats</a>
+
+        <!-- Buscar -->
+        <div id="buscar">
+            <input type="text" placeholder="Search location..." id="inpBuscar">
+            <button id="btnBuscar">
+                <img src="img/buscar.webp" alt="Buscar">
+            </button>
+        </div>
+
+        <!-- Usuario y dropdown -->
+
+        <div id="usuario">
+            <div>
+                <img src="img/usuario.webp" alt="Usuario">
+                <p id="nombreUsuario"></p>
+            </div>
+            <div id="opcionesUsuario">
+                <button id="editarPerfil">Edit profile</button>
+                <button id="borrarUsuario">Delete account</button>
+                <button id="logout">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Modal login -->
+    <section id="login">
+        <div id="modalUsuario">
+            <h1>Sign In</h1>
+            <p>Ingresa con usuario y email.</p>
+            <div>
+                <label for="inpUsuario" class="labelModal">Usuario</label>
+                <input type="text" placeholder="Usuario" id="inpUsuario" class="inputModal">
+            </div>
+            <div>
+                <label for="inpEmail" class="labelModal">Email</label>
+                <input type="text" placeholder="Email" id="inpEmail" class="inputModal">
+            </div>
+
+            <div class="botones">
+                <button id="btnRegistrar" class="botonCeleste">Registrar</button>
+                <button id="btnIngresar" class="botonAzul">Ingresar</button>
+            </div>
+    </section>
+
+    <!-- Popup Editar Perfil -->
+    <section id="formEditar">
+        <div class="popup">
+            <h2>Edit Profile</h2>
+            <input type="text" placeholder="New name..." id="inpNuevoNombre" class="inputModal">
+            <div class="botones">
+                <button id="btnRegresar" class="botonGris">Regresar</button>
+                <button id="btnCambiar" class="botonAzul">Cambiar</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popup Borrar Usuario -->
+    <section id="formBorrar">
+        <div class="popup">
+            <h2>WARNING: Do you want to delete your account?</h2>
+            <p>Your actions will be irreversible.</p>
+            <div class="botones">
+                <button id="btnNoBorrar" class="botonGris">No</button>
+                <button id="btnSiBorrar" class="botonRojo">Delete Account</button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Atajos -->
+    <section id="atajos" class="contenedor">
+        <button id="btnAgregarAtajo" class="btnAzulIcono">
+            <img src="img/plus.png" alt="Icono Agregar Atajo">
+        </button>
+        <div id="atajosContainer"></div>
+    </section>
+
+    <!-- Clima y Playlist -->
+
+    <section id="climaYPlaylist" class="contenedor">
+        <div id="clima"></div>
+        <div id="playlist">
+            <div id="title-and-button">
+                <h2>Your Music Forecast</h2>
+                <button id="btnOtraPlaylist">
+                    <img src="img/chevron.png" alt="" class="btnAzulIcono">
+                </button>
+            </div>
+            <div id="spotify-container">
+                <iframe id="spotify-player" src="" width="300" height="380" frameborder="0" allowtransparency="true"
+                    allow="encrypted-media">
+                </iframe>
+            </div>
+        </div>
+    </section>
+    <div id="mensaje"></div>
+
+    <script type="module" src="script.js"></script>
+<script type="module" src="scriptUsuarios.js"></script> 
+</body>
+
+</html>
