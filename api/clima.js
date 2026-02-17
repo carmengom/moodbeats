@@ -3,9 +3,10 @@ import fetch from 'node-fetch';
 export default async function handler(req, res) {
   try {
     const { ciudad, lat, lon } = req.query;
+    const API_KEY = process.env.API_KEY;
 
-    if (!process.env.API_KEY) {
-      throw new Error('API_KEY no definida');
+    if (!API_KEY) {
+      return res.status(500).json({ error: 'API_KEY no definida' });
     }
 
     let url = '';
@@ -13,25 +14,31 @@ export default async function handler(req, res) {
     if (ciudad) {
       url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
         ciudad
-      )}&units=metric&lang=es&appid=${process.env.API_KEY}`;
+      )}&units=metric&lang=es&appid=${API_KEY}`;
     } else if (lat && lon) {
-      url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&lang=es&appid=${process.env.API_KEY}`;
+      url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&lang=es&appid=${API_KEY}`;
     } else {
       return res.status(400).json({ error: 'Faltan parámetros' });
     }
 
     const respuesta = await fetch(url);
+
+    if (!respuesta.ok) {
+      const texto = await respuesta.text();
+      console.error('Error OpenWeather:', texto);
+      return res.status(respuesta.status).json({ error: 'Error al consultar clima' });
+    }
+
     const data = await respuesta.json();
 
-    if (!respuesta.ok || !data.sys) {
-      console.error('Respuesta inválida de OpenWeather:', data);
+    if (!data.sys) {
       return res.status(400).json({ error: 'Clima inválido' });
     }
 
     res.status(200).json(data);
 
   } catch (error) {
-    console.error('ERROR /api/clima:', error);
+    console.error('ERROR /clima:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 }
