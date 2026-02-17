@@ -65,8 +65,9 @@ async function obtenerClima(lat, lon) {
   return data;
 }
 
-
-/* MOSTRAR */
+/* =========================
+   MOSTRAR CLIMA
+========================= */
 export async function mostrarClima(clima) {
   try {
     if (!clima || !clima.sys || !clima.main || !clima.weather) {
@@ -84,7 +85,7 @@ export async function mostrarClima(clima) {
     contenedorClima.innerHTML = `
       <h1 id="h1Ciudad">${miClima.nombreCiudad}, ${miClima.pais}</h1>
       <div id="imgTemp">
-        <img src="http://openweathermap.org/img/wn/${miClima.iconoClima}@2x.png">
+        <img src="https://openweathermap.org/img/wn/${miClima.iconoClima}@2x.png">
         <p>${miClima.temp}°C</p>
       </div>
       <h2>${miClima.clima}</h2>
@@ -100,103 +101,34 @@ export async function mostrarClima(clima) {
   }
 }
 
-
-/* BUSCAR */
-
-async function buscarClima() {
-  try {
-    const ciudad = inputBuscar.value.trim();
-    if (!ciudad) {
-      alert('Ingresa una ciudad');
-      return;
-    }
-
-const respuesta = await fetch(`/api/clima?ciudad=${encodeURIComponent(ciudad)}`);
-    const data = await respuesta.json();
-
-    mostrarClima(data);
-    inputBuscar.value = '';
-  } catch (error) {
-    console.log('Hubo un error al buscar el clima', error)
-    mostrarMensaje('Hubo un error al buscar el clima.', 'error')
-  }
-}
-
-
-inputBuscar.addEventListener('keydown', (event) => {
-  if (event.key === 'Enter')
-    buscarClima();
-})
-btnBuscar.addEventListener('click', buscarClima);
-
-
-/* SE CAMBIA EL FONDO EN EL CSS */
-
+/* =========================
+   CAMBIAR FONDO
+========================= */
 function cambiarFondo(clima) {
+  // Asegurarse que todos los fondos sean HTTPS
   const fondo = fondosPorClima[clima] || fondosPorClima['Clear'];
-
-  document.body.style.backgroundImage = `url('${fondo}')`;
+  document.body.style.backgroundImage = `url('${fondo.replace('http://', 'https://')}')`;
 }
 
-
-/* SPOTIFY */
-
-/* OBTENER TOKEN */
-
-async function obtenerTokenSpotify() {
-  try {
-const respuesta = await fetch(`/api/spotify-token`);
-    const data = await respuesta.json();
-    return data.access_token;
-  } catch (error) {
-    alert('Error al obtener token de Spotify');
-  }
-}
-
-
-
-/* BUSCA PLAYLISTS POR NOMBRE */
-
-async function buscarPlaylistsPorNombre(nombre) {
-  try {
-    const token = await obtenerTokenSpotify();
-    const url = `https://api.spotify.com/v1/search?q=${encodeURIComponent(nombre)}&type=playlist&limit=20`;
-
-    const respuesta = await fetch(url, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    const data = await respuesta.json();
-
-    return data.playlists.items;
-
-  } catch (error) {
-    console.log('Hubo un error al buscar las playlists', error)
-    alert('Hubo un error al buscar las playlists')
-  }
-
-}
-
+/* =========================
+   SPOTIFY
+========================= */
 async function mostrarPlaylistSegunClima(categoria) {
   try {
-    const playlists = await buscarPlaylistsPorNombre(categoria)
+    const playlists = await buscarPlaylistsPorNombre(categoria);
 
     if (!playlists || playlists.length === 0) {
       alert("No se encontraron playlists para la categoría");
+      return;
     }
 
-    /* para filtrar las opciones que dan null en la búsqueda (usualmente tracks o albumes)*/
     const playlistsValidas = playlists.filter(playlist => playlist && playlist.id);
-
-    if (playlistsValidas.length === 0) {
-      alert("No hay playlists válidas para mostrar.");
-    }
+    if (playlistsValidas.length === 0) return;
 
     const seleccionarPlaylist = Math.floor(Math.random() * playlistsValidas.length);
     const playlistSeleccionada = playlistsValidas[seleccionarPlaylist];
 
+    // Spotify embed HTTPS
     iframe.src = `https://open.spotify.com/embed/playlist/${playlistSeleccionada.id}`;
 
     ultimasPlaylists = playlistsValidas;
@@ -205,6 +137,7 @@ async function mostrarPlaylistSegunClima(categoria) {
     mostrarMensaje('Hubo un error al mostrar la playlist.', 'error');
   }
 }
+
 
 /* Mostrar siguiente Playlist Random de la misma categoría */
 
