@@ -211,7 +211,7 @@ function mostrarAtajos() {
 ========================= */
 async function buscarClimaAtajo(ciudad) {
   try {
-    const respuesta = await fetch(`${BASE_URL}/clima?ciudad=${encodeURIComponent(ciudad)}`);
+    const respuesta = await fetch(`${BASE_URL}/api/clima?ciudad=${encodeURIComponent(ciudad)}`);
     const data = await respuesta.json();
     return data;
   } catch (error) {

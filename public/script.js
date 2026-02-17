@@ -62,7 +62,7 @@ async function obtenerUbicacion() {
 
 /* OBTENER */
 async function obtenerClima(lat, lon) {
-  const respuesta = await fetch(`${BASE_URL}/clima?lat=${lat}&lon=${lon}`);
+const respuesta = await fetch(`${BASE_URL}/api/clima?lat=${lat}&lon=${lon}`);
   return await respuesta.json();
 }
 
@@ -112,7 +112,7 @@ async function buscarClima() {
       return;
     }
 
-    const respuesta = await fetch(`${BASE_URL}/clima?ciudad=${encodeURIComponent(ciudad)}`);
+const respuesta = await fetch(`${BASE_URL}/api/clima?ciudad=${encodeURIComponent(ciudad)}`);
     const data = await respuesta.json();
 
     mostrarClima(data);
@@ -146,7 +146,7 @@ function cambiarFondo(clima) {
 
 async function obtenerTokenSpotify() {
   try {
-    const respuesta = await fetch(`${BASE_URL}/spotify-token`);
+const respuesta = await fetch(`${BASE_URL}/api/spotify-token`);
     const data = await respuesta.json();
     return data.access_token;
   } catch (error) {
