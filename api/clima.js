@@ -22,16 +22,9 @@ export default async function handler(req, res) {
     }
 
     const respuesta = await fetch(url);
-
-    if (!respuesta.ok) {
-      const texto = await respuesta.text();
-      console.error('Error OpenWeather:', texto);
-      return res.status(respuesta.status).json({ error: 'Error al consultar clima' });
-    }
-
     const data = await respuesta.json();
 
-    if (!data.sys) {
+    if (!respuesta.ok || !data.sys) {
       return res.status(400).json({ error: 'Clima inválido' });
     }
 

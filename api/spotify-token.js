@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 
     if (!CLIENT_ID || !CLIENT_SECRET) {
-      return res.status(500).json({ error: 'Credenciales de Spotify no definidas' });
+      return res.status(500).json({ error: 'Credenciales Spotify no definidas' });
     }
 
     const auth = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64');
@@ -19,12 +19,6 @@ export default async function handler(req, res) {
       },
       body: 'grant_type=client_credentials',
     });
-
-    if (!response.ok) {
-      const texto = await response.text();
-      console.error('Error Spotify:', texto);
-      return res.status(response.status).json({ error: 'Error al obtener token Spotify' });
-    }
 
     const data = await response.json();
     res.status(200).json({ access_token: data.access_token });
