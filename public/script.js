@@ -1,6 +1,8 @@
 import { categoriasPorClima } from './scriptSpotify.js';
 import { fondosPorClima } from './scriptFondos.js';
 
+const BASE_URL = "https://moodbeatsplayer.vercel.app";
+
 const contenedorMensaje = document.querySelector('#mensaje');
 
 const contenedorClima = document.querySelector('#clima');
@@ -60,9 +62,7 @@ async function obtenerUbicacion() {
 
 /* OBTENER */
 async function obtenerClima(lat, lon) {
-  const respuesta = await fetch(
-    `http://localhost:3000/clima?lat=${lat}&lon=${lon}`
-  );
+  const respuesta = await fetch(`${BASE_URL}/clima?lat=${lat}&lon=${lon}`);
   return await respuesta.json();
 }
 
@@ -112,10 +112,8 @@ async function buscarClima() {
       return;
     }
 
-    const respuesta = await fetch(`http://localhost:3000/clima?ciudad=${encodeURIComponent(ciudad)}`)
-    const data = await respuesta.json()
-    console.log('Clima obtenido correctamente.')
-    console.log(data);
+    const respuesta = await fetch(`${BASE_URL}/clima?ciudad=${encodeURIComponent(ciudad)}`);
+    const data = await respuesta.json();
 
     mostrarClima(data);
     inputBuscar.value = '';
@@ -124,6 +122,7 @@ async function buscarClima() {
     mostrarMensaje('Hubo un error al buscar el clima.', 'error')
   }
 }
+
 
 inputBuscar.addEventListener('keydown', (event) => {
   if (event.key === 'Enter')
@@ -147,13 +146,14 @@ function cambiarFondo(clima) {
 
 async function obtenerTokenSpotify() {
   try {
-    const respuesta = await fetch('http://localhost:3000/spotify-token');
+    const respuesta = await fetch(`${BASE_URL}/spotify-token`);
     const data = await respuesta.json();
     return data.access_token;
   } catch (error) {
     alert('Error al obtener token de Spotify');
   }
 }
+
 
 
 /* BUSCA PLAYLISTS POR NOMBRE */

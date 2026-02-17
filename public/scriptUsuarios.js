@@ -1,6 +1,9 @@
 import { mostrarClima } from './script.js';
 import { mostrarMensaje } from './script.js';
 
+const BASE_URL = "https://moodbeatsplayer.vercel.app"; 
+
+
 let data = null;
 
 /* =========================
@@ -208,7 +211,7 @@ function mostrarAtajos() {
 ========================= */
 async function buscarClimaAtajo(ciudad) {
   try {
-    const respuesta = await fetch(`http://localhost:3000/clima?ciudad=${encodeURIComponent(ciudad)}`);
+    const respuesta = await fetch(`${BASE_URL}/clima?ciudad=${encodeURIComponent(ciudad)}`);
     const data = await respuesta.json();
     return data;
   } catch (error) {
@@ -216,6 +219,7 @@ async function buscarClimaAtajo(ciudad) {
     return null;
   }
 }
+
 
 /* =========================
    AUTO LOGIN (si hay usuario en LS)
